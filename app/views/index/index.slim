@@ -1,0 +1,28 @@
+pre user.buy # Покупка
+   Deal.new.generate #Создание Акции в БД и генерация кодов
+   deal.benefit #выгода
+   
+   Хеш акции:
+   {
+           name: 'Ресторан',
+           description: 'Получи скидку 60% на ужин в ресторане',
+           dealstart: Date.tomorrow,
+           dealend: Date.tomorrow.tomorrow,
+           maximum: 100, # макс. купонов
+           minimum: 10, # мин. купонов
+           dealtype: 'unlimited', #тип сделки unlimited, fixprice, certificate
+           sellprice: 150, #цена на сайте
+           dealprice: 5000, #стоимость самого предложения
+           condition: false, # состояние акции true if coupon.count > minimum
+           discount: 60
+       }
+       
+    deal = Deal.new.generate newdeal #Создаем новую акцию
+    deal2 = Deal.new.generate newdeal_type2_fixprice #Создаем новую акцию
+    deal3 = Deal.new.generate newdeal_type3_fixprice #Создаем новую акцию
+    user.buy deal #Покупка акции
+    user.buy deal2 #Покупка акции
+    user.buy deal3 #Покупка акции
+    benefit = deal.benefit #Выгода по акции
+    benefit2 = deal2.benefit #Выгода по акции
+    benefit3 = deal3.benefit #Выгода по акции
