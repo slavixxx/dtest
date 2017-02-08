@@ -14,6 +14,28 @@ class Deal < ActiveRecord::Base
         deal
     end
 
+    def is_open?
+        self.coupons.length < self.maximum ? true:false
+    end
+
+    def check_condition
+        if self.coupons.length >= self.minimum
+            unless self.condition == true
+                self.condition = true
+                self.save
+            end
+            return true
+        else
+            return false
+        end
+    end
+
+    def coupons_count
+        self.reload.coupons.length
+    end
+
+
+
     def benefit
         return self.dealprice - self.sellprice if self.dealtype == 'certificate'
         return self.dealprice - (self.dealprice/100*self.discount + self.sellprice) if self.dealtype == 'fixprice'

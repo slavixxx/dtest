@@ -43,9 +43,9 @@ class IndexController < ApplicationController
                        condition: false, # состояние акции true if coupon.count > minimum
                        discount: 60
                    }
-         deal = Deal.new.generate newdeal #Создаем новую акцию
-         deal2 = Deal.new.generate newdeal_type2_fixprice #Создаем новую акцию
-         deal3 = Deal.new.generate newdeal_type3_fixprice #Создаем новую акцию
+         deal = Deal.new.generate newdeal #Создаем новую акцию Мойка
+         deal2 = Deal.new.generate newdeal_type2_fixprice #Создаем новую акцию Бассейн
+         deal3 = Deal.new.generate newdeal_type3_fixprice #Создаем новую акцию Ресторан
          user.buy deal #Покупка акции
          user.buy deal2 #Покупка акции
          user.buy deal3 #Покупка акции
